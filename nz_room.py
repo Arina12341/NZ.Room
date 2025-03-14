@@ -1,3 +1,3 @@
-a={}
-a["first_name"]=""
-a.get("first.name","")
+b={}
+b["first_name"]=""
+b.get("first.name","")
