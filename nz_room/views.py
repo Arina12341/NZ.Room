@@ -8,3 +8,5 @@ def home(request):
 
 def page_news(request):
     return render(request, 'page_news.html')
+def kabinet(request):
+    return render(request, 'kabinet.html')
