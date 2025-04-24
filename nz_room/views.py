@@ -8,3 +8,6 @@ def home(request):
 
 def page_news(request):
     return render(request, 'page_news.html')
+
+def users(request):
+    return render(request, 'users.html')
