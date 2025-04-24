@@ -10,3 +10,6 @@ def page_news(request):
     return render(request, 'page_news.html')
 def kabinet(request):
     return render(request, 'kabinet.html')
+
+def users(request):
+    return render(request, 'users.html')
