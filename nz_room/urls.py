@@ -17,12 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from nz_room.views import home, page_news, kabinet, users
+from nz_room.views import home, page_news, kabinet, users, my_page
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home), 
     path('news', page_news),
     path('kabinet/', kabinet),
-    path('users/', users)
+    path('users/', users),
+    path('my/', my_page)
 ]

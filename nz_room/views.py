@@ -13,3 +13,6 @@ def kabinet(request):
 
 def users(request):
     return render(request, 'users.html')
+
+def my_page(request):
+    return render(request, 'mypage.html')
