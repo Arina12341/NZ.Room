@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+ <head>
+     <title>Авторизація</title>
+ </head>
+ <body>
+    <div>
+        <form method="POST">
+            {% csrf_token %}
+            <label>Логін</label>
+            <input type="text" name="username">
+            <label>Пароль</label>
+            <input type="password" name="password">
+            <button type="submit">
+                Увійти
+            </button>
+        </form>
+    </div>
+ </body>
+</html>
