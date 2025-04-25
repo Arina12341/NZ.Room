@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from nz_room.views import home, page_news, kabinet, users, my_page
+from nz_room.views import home, page_news, kabinet, users, my_page, menu
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,5 +25,6 @@ urlpatterns = [
     path('news', page_news),
     path('kabinet/', kabinet),
     path('users/', users),
-    path('my/', my_page)
+    path('my/', my_page),
+    path('menu/', menu)
 ]

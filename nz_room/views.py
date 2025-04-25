@@ -16,3 +16,7 @@ def users(request):
 
 def my_page(request):
     return render(request, 'mypage.html')
+
+def menu(request):
+    return render(request, 'menu.html')
+
