@@ -21,8 +21,7 @@ class Task(models.Model):
     end_date=models.DateField()
     status=models.CharField(max_length=50,choices=TASK_STATUS.CHOICES,default=TASK_STATUS.NEW)
 
-    def _str_(self):
+    def __str__(self):
         return self.title 
-
 
 
