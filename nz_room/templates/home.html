@@ -9,5 +9,17 @@
   {% if request.user.is_authenticated %}
   <p>Ви увійшли як {{ request.user.username }}.</p>
   {% endif %}
+  <ul>
+    <a href="/events/list">
+      <li>
+        Події
+      </li>
+    </a>
+    <a href="/tasks/list">
+      <li>
+        Задачі
+      </li>
+    </a>
+  </ul>
 </body>
 </html>

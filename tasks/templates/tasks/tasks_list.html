@@ -1,14 +1,14 @@
 <DOCTYPE html>
     <html>
         <body>
-            <table>
+            <ul>
                 {%for Task in tasks%}
-                <tr>
-                    <td>
-                    {{Task.title}}
-                    </td>
-                </tr>
+                    <li>
+                        <a href="/tasks/detail/{{ Task.id }}">
+                            {{ Task.title }}
+                        </a>
+                    </li>
                 {%endfor%}
-            </table>
+            </ul>
         </html>
     </html>
