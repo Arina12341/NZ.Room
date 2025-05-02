@@ -7,8 +7,8 @@ def tasks_list(request):
         {'tasks': tasks}
     )
 
-def task_detail(request, id1):
-    task=Task.objects.get(id=id1)
+def task_detail(request, pk):
+    task=Task.objects.get(id=pk)
     return render(
         request, 'tasks/task_detail.html',
         {'task': task}
