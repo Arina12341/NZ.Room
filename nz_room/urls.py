@@ -30,5 +30,4 @@ urlpatterns = [
     path('users/', users),
     path('my/', my_page),
     path('menu/', menu),
-
 ]
