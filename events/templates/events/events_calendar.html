@@ -1,14 +1,14 @@
 <DOCTYPE html>
     <html>
         <body>
-            <table>
+            <ul>
                 {%for event in events%}
-                <tr>
-                    <td>
-                    {{event.title}}
-                    </td>
-                </tr>
+                    <li>
+                        <a href="/events/detail/{{event.id}}">
+                            {{event.title}} 
+                        </a>
+                    </li>
                 {%endfor%}
-            </table>
+            </ul>
         </html>
     </html>
