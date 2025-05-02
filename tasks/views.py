@@ -1,3 +1,8 @@
+from .models import Task
 from django.shortcuts import render
-
-# Create your views here.
+def tasks_list(request):
+    tasks=Task.objects.all()
+    return render(
+        request, 'tasks/tasks_list.html',
+        {'tasks': tasks}
+    )
