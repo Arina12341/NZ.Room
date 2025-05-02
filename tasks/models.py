@@ -8,10 +8,10 @@ class TASK_STATUS:
     NOT_DONE='not_done'
     DONE='done'
     CHOICES=[
-        (NEW,'New')
-        (IN_PROGRESS,'In progress')
-        (NOT_DONE,'Not done')
-        (DONE,'Done')
+        (NEW,'New'),
+        (IN_PROGRESS,'In progress'),
+        (NOT_DONE,'Not done'),
+        (DONE,'Done'),
     ]
 
 

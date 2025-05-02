@@ -24,7 +24,7 @@ class Event(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
     start_date = models.DateTimeField()
-    end_date = models.DateTimeField(blank=True)
+    end_date = models.DateTimeField(blank=True, null=True)
     duration = models.IntegerField(blank=True, default=15)
     location = models.TextField(blank=True, default='')
     users = models.ManyToManyField(User)

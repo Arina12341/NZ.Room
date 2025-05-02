@@ -22,10 +22,12 @@ from nz_room.views import home, page_news, kabinet, users, my_page, menu
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('accounts.urls')),
+    path('events/', include('events.urls')),
     path('', home), 
     path('news', page_news),
     path('kabinet/', kabinet),
     path('users/', users),
     path('my/', my_page),
-    path('menu/', menu)
+    path('menu/', menu),
+
 ]
