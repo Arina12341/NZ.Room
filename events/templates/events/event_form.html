@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Task Form</title>
+    </head>
+    <body>
+        <h1>Створити подію</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Зберегти</button>
+        </form>
+    </body>
+</html>
