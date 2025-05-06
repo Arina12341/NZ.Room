@@ -1,14 +1,148 @@
-<DOCTYPE html>
-    <html>
-        <body>
-            <ul>
-                {%for event in events%}
-                    <li>
-                        <a href="/events/detail/{{event.id}}">
-                            {{event.title}} 
-                        </a>
-                    </li>
-                {%endfor%}
-            </ul>
-        </html>
-    </html>
+   
+    <!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Події — NZ ROOM</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400&family=Roboto:wght@400&display=swap" rel="stylesheet">
+  <style>
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #fff;
+      color: #333;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    header {
+      background: #ccc;
+      padding: 1rem;
+      border-bottom: 1px solid #bbb;
+    }
+    header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 400;
+      font-size: 1.5rem;
+      color: #222;
+    }
+
+    .subnav {
+      background: #e0e0e0;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #bbb;
+      font-size: 0.9rem;
+    }
+    .subnav a {
+      color: #333;
+      text-decoration: none;
+      font-weight: bold;
+      margin-right: auto;
+    }
+    .subnav label {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      cursor: pointer;
+    }
+
+    .search-container {
+      padding: 1rem;
+      border-bottom: 1px solid #bbb;
+      text-align: center;
+    }
+    .search-container input {
+      width: 60%;
+      max-width: 300px;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: #e8e8e8;
+      font-family: 'Roboto', sans-serif;
+      font-size: 1rem;
+    }
+
+    .events {
+      padding: 1rem;
+    }
+    .card {
+      display: flex;
+      align-items: center;
+      background: #e0e0e0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    .card-date {
+      width: 60px;
+      height: 60px;
+      background: #ccc;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      margin-right: 1rem;
+      color: #222;
+    }
+    .card-body h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.1rem;
+      font-family: 'Roboto', sans-serif;
+    }
+    .card-body time {
+      color: #555;
+      font-size: 0.9rem;
+      font-family: 'Roboto', sans-serif;
+    }
+    .card-body {
+      flex: 1;
+    }
+    .card-actions {
+      color: #555;
+      font-size: 0.85rem;
+      cursor: pointer;
+      font-family: 'Roboto', sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>NZ ROOM</h1>
+  </header>
+
+  <div class="subnav">
+    <a href="/">&#8592; Події</a>
+    <label><input type="radio" name="filter" checked> Минулі/Майбутні</label>
+    <label><input type="radio" name="filter"> Прийняті/Відхилені</label>
+    <label><input type="radio" name="filter"> Події класу</label>
+  </div>
+
+  <div class="search-container">
+    <input type="text" placeholder="Пошук подій">
+  </div>
+
+  <div class="events">
+    {%for event in events%}
+    <a href="/events/detail/{{event.id}}">
+        <div class="card">
+            <div class="card-date">{{event.start_date}}</div>
+                <div class="card-body">
+                    <h3>{{event.title}} </h3>
+                    <time>{{event.start_date}}–{{event.end_date}}</time>
+                </div>
+            <div class="card-actions">Прийняте/Відхилене</div>
+        </div>
+    </a>
+    {%endfor%}
+  </div>
+
+</body>
+</html>
