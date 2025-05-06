@@ -1,10 +1,11 @@
 
 from django.urls import path
 
-from accounts.views import auth_page, register_form, logout_view
+from accounts.views import auth_page, register_form, logout_view, account_detail
 
 urlpatterns = [
     path('auth/', auth_page),
     path('register/', register_form),
-    path('logout/', logout_view)
+    path('logout/', logout_view),
+    path('detail/<int:pk>/', account_detail)
 ]

@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, logout, login
 from .forms import RegisterForm
 
+from accounts.models import User
+
 def auth_page(request):
     if request.user.is_authenticated:
         return redirect('/')
@@ -14,6 +16,8 @@ def auth_page(request):
             return redirect('/')
 
     return render(request, 'accounts/auth.html')
+
+
 def register_form(request):
     if not request.user.is_authenticated or request.user.role != "teacher":
         return redirect('/')
@@ -28,6 +32,14 @@ def register_form(request):
         request, 'accounts/register_form.html',
         {'form': form}
     )
+
 def logout_view(request):
     logout(request)
     return redirect('/')
+
+def account_detail(request, pk):
+    user=User.objects.get(id=pk)
+    return render(
+        request, 'accounts/profile_detail.html',
+        {'user': user}
+    )
