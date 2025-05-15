@@ -118,16 +118,20 @@
     <h1>NZ ROOM</h1>
   </header>
 
-  <div class="subnav">
-    <a href="/">&#8592; Події</a>
-    <label><input type="radio" name="filter" checked> Минулі/Майбутні</label>
-    <label><input type="radio" name="filter"> Прийняті/Відхилені</label>
-    <label><input type="radio" name="filter"> Події класу</label>
-  </div>
+  <form>
+    <div class="subnav">
+      <a href="/">&#8592; Події</a>
+      <label><input type="radio" name="mode" value="past"> Минулі</label>
+      <label><input type="radio" name="mode" value="future"> Майбутні</label>
+      <!-- <label><input type="radio" name="filter"> Прийняті/Відхилені</label>
+      <label><input type="radio" name="filter"> Події класу</label> -->
+    </div>
 
-  <div class="search-container">
-    <input type="text" placeholder="Пошук подій">
-  </div>
+    <div class="search-container">
+      <input name="search" type="text" placeholder="Пошук подій">
+      <button type="submit">Пошук</button>
+    </div>
+  </form>
 
   <div class="events">
     {%for event in events%}

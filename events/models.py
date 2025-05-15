@@ -32,3 +32,9 @@ class Event(models.Model):
 
     def __str__(self):
         return self.title
+
+class Comentar(models.Model):
+    event= models.ForeignKey(Event, on_delete=models.CASCADE)
+    text= models.TextField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    create_date = models.DateTimeField(auto_now_add=True)
