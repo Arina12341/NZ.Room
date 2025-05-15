@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{% comment %} <!DOCTYPE html>
 <html>
 <head>
   <title>Моя головна сторінка</title>
@@ -26,5 +26,178 @@
       </li>
     </a>
   </ul>
+</body>
+</html> {% endcomment %}
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Календар подій — NZ ROOM</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: sans-serif; background: #fff; color: #333; }
+    header { background: #ccc; padding: 1rem; border-bottom: 1px solid #bbb; }
+    header h1 { margin: 0; font-size: 1.5rem; }
+    .subnav {
+      background: #e0e0e0;
+      display: flex;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #bbb;
+      font-size: 0.9rem;
+    }
+    .subnav a { text-decoration: none; color: #333; }
+    .main {
+      display: flex;
+      gap: 1rem;
+      max-width: 1000px;
+      margin: 1rem auto;
+      padding: 0 1rem;
+    }
+    .left {
+      flex: 2;
+    }
+    .calendar-card {
+      background: #e0e0e0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 1rem;
+    }
+    .calendar-card h2 {
+      margin: 0 0 0.75rem;
+      font-size: 1.25rem;
+    }
+    .modes {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .modes button {
+      background: #d0d0d0;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .calendar-placeholder {
+      background: #d8d8d8;
+      height: 200px;
+      border: 1px dashed #bbb;
+      border-radius: 4px;
+    }
+    .right {
+      flex: 1;
+    }
+    .tasks-card {
+      background: #e0e0e0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 1rem;
+    }
+    .tasks-card h2 {
+      margin: 0 0 0.75rem;
+      font-size: 1.25rem;
+    }
+    .tasks-filter {
+      margin-bottom: 0.5rem;
+    }
+    .tasks-filter select {
+      width: 100%;
+      padding: 0.5rem;
+      border: none;
+      background: #d0d0d0;
+      border-radius: 4px;
+    }
+    .task {
+      background: #d8d8d8;
+      padding: 0.75rem;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.95rem;
+    }
+    .task:last-child { margin-bottom: 0; }
+    .task-status { color: #555; font-size: 0.85rem; }
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header-top h1 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: normal;
+    }
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-top">
+      <h1>NZ ROOM</h1>
+      {% if request.user.is_authenticated %}
+      <div class="user-info">
+        <div class="avatar"></div>
+        <span>{{ request.user.email }}</span>
+        <a href="/logout/">
+          <span>Вийти</span>
+        </a>  
+      </div>
+      {% else %}
+      <div class="user-info">
+        <a href="/auth/">
+          <span>Увійти</span>
+        </a>  
+      </div>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="subnav">
+    <a href="/events/list/" style="margin-right: 10px"> Події</a>
+    <a href="/tasks/list/"> Задачі</a>
+  </div>
+
+  <div class="main">
+    <div class="left">
+      <div class="calendar-card">
+        <h2>Календар подій</h2>
+        <div class="modes">
+          <button>Місячний</button>
+          <button>Денний</button>
+          <button>Тижневий</button>
+          <button>Річний</button>
+        </div>
+        <div class="calendar-placeholder"></div>
+      </div>
+    </div>
+    <div class="right">
+      <div class="tasks-card">
+        <h2>Завдання</h2>
+        <div class="tasks-filter">
+          <select>
+            <option>Виконано/Не виконано</option>
+          </select>
+        </div>
+        <div class="task">
+          <span>Пройти тест уроку: Українська мова</span>
+          <span class="task-status">Виконано</span>
+        </div>
+        <div class="task">
+          <span>Зробити сторінку 24 в зошиті: Англійська мова</span>
+          <span class="task-status">Не виконано</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
