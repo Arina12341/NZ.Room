@@ -145,7 +145,13 @@
           <button>Не відвідую</button>
         </div>
       </div>
-    
+      {% for coment in comments %}
+      <div class="event-card">
+        <h2>{{ coment.user.email }}</h2>
+        <p>{{ coment.text }}</p>
+        <p>{{ coment.create_date}}</p>
+      </div>
+      {% endfor %}
       <form class="comment-card" action="/events/save_comment/" method="POST">
         {% csrf_token %}
         <input type="hidden" name="event" value="{{ event.id }}">
@@ -153,7 +159,7 @@
         <h2 style="font-family:'Orbitron',sans-serif; font-size:1.1rem; margin-bottom:0.5rem;">Коментарі до події</h2>
         <textarea placeholder="Ваш коментар..." name="text"></textarea>
         <button type="submit" class="add-btn">Додати</button>
-      </div>
+      </form>
     </div>
 
     <div class="right">

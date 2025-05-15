@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from django.http import HttpResponse
-from .models import Event
+from .models import Comentar, Event
 from django.shortcuts import render, redirect
 from .forms import EventForm, CommentForm
 def events_list(request):
@@ -18,11 +18,11 @@ def events_list(request):
         {'events': events}
     )
 def event_detail(request, pk):
-    form = CommentForm
     event=Event.objects.get(id=pk)
+    comments = Comentar.objects.filter(event=event).order_by('-create_date')
     return render(
         request, 'events/event_detail.html',
-        {'event': event, 'form': form}
+        {'event': event, 'comments': comments}
     )
 def event_form(request):
     if request.method=='POST':
@@ -41,4 +41,5 @@ def save_comment_form(request):
         form=CommentForm(request.POST)
         if form.is_valid():
             form.save()
-    return HttpResponse("OK")
+            return redirect('/events/detail/'+ request.POST.get('event') +'/')
+    return redirect('/events/list/')
