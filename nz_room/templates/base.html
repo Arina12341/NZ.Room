@@ -139,7 +139,9 @@
     <body>
     
         <header>
+            <a href="/">
             <div class="logo">NZ ROOM</div>
+            </a>
             {% if request.user.is_authenticated %}
             <div class="user">
             <a href="/detail/{{ request.user.id }}/">

@@ -1,22 +1,12 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-  <meta charset="UTF-8">
-  <title>Реєстрація</title>
+{% extends "base.html" %}
+
+{% block title %}
+Реєстрація — NZ ROOM
+{% endblock title %}
+
+{% block styles %}
+
   <style>
-    body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
-      background-color: #fff;
-    }
-
-    .header {
-      background-color: #ddd;
-      padding: 20px;
-      font-size: 24px;
-      font-weight: bold;
-    }
-
     .container {
       display: flex;
       justify-content: center;
@@ -71,20 +61,19 @@
       text-decoration: underline;
     }
   </style>
-</head>
-<body>
-  <div class="header">NZ ROOM</div>
 
+{% endblock styles %}
+  
+{% block content %}
   <div class="container">
     <div class="form-box">
       <h2>Реєстрація</h2>
       <form>
         {% csrf_token %} 
         {{ form.as_div }}
-        <button type="submit">Зареєструватись</button>
+        <button type="submit">Зареєструвати</button>
       </form>
-      <p>Вже є акаунт?<a href="#">Увійти</a></p>
+      {% comment %} <p>Вже є акаунт?<a href="#">Увійти</a></p> {% endcomment %}
     </div>
   </div>
-</body>
-</html>
+{% endblock content %}
