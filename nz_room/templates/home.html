@@ -1,34 +1,3 @@
-{% comment %} <!DOCTYPE html>
-<html>
-<head>
-  <title>Моя головна сторінка</title>
-</head>
-<body style="background-color:rgba(116, 116, 116, 0.184);">
-  <h1 style="text-align: center;text-align: center;color: rgb(6, 132, 181);padding: 3px;border: 2px solid rgba(0, 0, 0, 0);background-color: rgba(79, 79, 79, 0.108);">Ласкаво просимо на мою головну сторінку!</h1>
-  <p>Це тестова сторінка.</p>
-  {% if request.user.is_authenticated %}
-  <p>
-    Ви увійшли як {{ request.user.username }}.
-    <a href="/logout/">Вийти</a>
-  </p>
-  {% else %}
-  <a href="/auth/">Зареєструватись</a>
-  {% endif %}
-  <ul>
-    <a href="/events/list">
-      <li style="color: rgb(255, 153, 0);font-size:140%">
-        Події
-      </li>
-    </a>
-    <a href="/tasks/list">
-      <li style="color: rgb(255, 153, 0);font-size:140%">
-        Задачі
-      </li>
-    </a>
-  </ul>
-</body>
-</html> {% endcomment %}
-
 <!DOCTYPE html>
 <html lang="uk">
 <head>
@@ -146,7 +115,9 @@
       {% if request.user.is_authenticated %}
       <div class="user-info">
         <div class="avatar"></div>
-        <span>{{ request.user.email }}</span>
+        <a href="/detail/{{ request.user.id }}/">
+          <span>{{ request.user.email }}</span>
+        </a>
         <a href="/logout/">
           <span>Вийти</span>
         </a>  
