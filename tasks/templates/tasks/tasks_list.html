@@ -1,14 +1,191 @@
-<DOCTYPE html>
-    <html>
-        <body>
-            <ul>
-                {%for Task in tasks%}
-                    <li>
-                        <a href="/tasks/detail/{{ Task.id }}">
-                            {{ Task.title }}
-                        </a>
-                    </li>
-                {%endfor%}
-            </ul>
-        </html>
-    </html>
+
+
+    <!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <title>Завдання</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: sans-serif; background: #ccc; }
+
+    a { text-decoration: none; color: #000; }
+    button { border: none; background: #bbb; padding: 8px 12px; cursor: pointer; }
+
+    /* Header */
+    header {
+      background: #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+    .logo { font-size: 1.2em; }
+    .user {
+      display: flex;
+      align-items: center;
+    }
+    .user-circle {
+      width: 40px; height: 40px;
+      background: #d3bcbc;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    /* Sub-navigation */
+    .sub-nav {
+      background: #bbb;
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+    }
+    .sub-nav .back {
+      margin-right: 30px;
+      font-size: 1em;
+    }
+    .filters {
+      display: flex;
+      gap: 20px;
+    }
+    .filters label {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .filters input {
+      width: 12px;
+      height: 12px;
+    }
+
+    /* Layout */
+    .container {
+      display: flex;
+    }
+    .sidebar {
+      width: 150px;
+      background: #fff;
+    }
+    .main-content {
+      flex: 1;
+      background: #fff;
+      border-left: 1px solid #000;
+      border-right: 1px solid #000;
+      padding: 20px;
+    }
+
+    /* Search */
+    .search-bar {
+      width: 300px;
+      height: 30px;
+      background: #ddd;
+      margin: 0 auto 20px;
+    }
+    .search-bar input {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: transparent;
+      padding: 5px;
+      color: #555;
+    }
+
+
+    .divider {
+      border-top: 1px solid #000;
+      margin-bottom: 20px;
+    }
+
+    /* Task cards */
+    .task-card {
+      background: #ddd;
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+    .task-date {
+      width: 80px;
+      text-align: center;
+      margin-right: 20px;
+    }
+    .date-box {
+      background: #bbb;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    .time {
+      font-size: 0.9em;
+    }
+    .task-details {
+      flex: 1;
+    }
+    .task-details h2 {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+    .task-details button {
+      background: #bbb;
+      padding: 8px 12px;
+    }
+    .task-status {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .task-status span {
+      margin-right: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">NZ ROOM</div>
+    <div class="user">
+      <div class="user-circle"></div>
+      <div>Прізвище Ім’я</div>
+    </div>
+  </header>
+
+  <div class="sub-nav">
+    <a href="#" class="back">&larr; Завдання</a>
+    <div class="filters">
+      <label><input type="radio" name="filter" checked> Всі</label>
+      <label><input type="radio" name="filter"> Виконані</label>
+      <label><input type="radio" name="filter"> Не виконані</label>
+    </div>
+  </div>
+
+  <div class="container">
+    <aside class="sidebar"></aside>
+
+    <main class="main-content">
+      <div class="search-bar">
+        <input type="text" placeholder="Пошук завдань">
+      </div>
+
+      <div class="divider"></div>
+      {%for Task in tasks%}
+      <a href="/tasks/detail/{{ Task.id }}">
+        <div class="task-card">
+            <div class="task-date">
+            <div class="date-box"> {{ Task.end_date }}</div>
+            {% comment %} <div class="time">14:00<br>123 каб.</div> {% endcomment %}
+            </div>
+            <div class="task-details">
+            <h2> {{ Task.title }}</h2>
+            <button>Деталі завдання</button>
+            </div>
+            <div class="task-status">
+            <div><span>&#9679;</span> Виконано</div>
+            <div><span>&#10003;</span> Не виконано</div>
+            </div>
+        </div>
+        </a>
+      {%endfor%}
+    </main>
+  </div>
+
+</body>
+</html>
