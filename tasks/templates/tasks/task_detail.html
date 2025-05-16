@@ -1,171 +1,126 @@
+{% extends "base.html" %}
 
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-  <meta charset="UTF-8">
-  <title>NZ ROOM</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: sans-serif;
-      background-color: #ffffff;
-    }
+{% block title %}
+Деталі задачі — NZ ROOM
+{% endblock title %}
 
-    header {
-      background-color: #dedede;
-      padding: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+{% block styles %}
 
-    header h1 {
-      margin: 0;
-      font-size: 20px;
-    }
+<style>
+  .container {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+  }
 
-    .user {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+  .left, .right {
+    flex: 1;
+  }
 
-    .user .circle {
-      width: 40px;
-      height: 40px;
-      background-color: #cbbebe;
-      border-radius: 50%;
-    }
+  .middle {
+    flex: 2;
+  }
 
-    .top-bar {
-      background-color: #b3b3b3;
-      padding: 10px;
-      font-size: 16px;
-    }
+  .block {
+    background-color: #dddddd;
+    padding: 15px;
+    margin-bottom: 20px;
+  }
 
-    .container {
-      display: flex;
-      padding: 20px;
-      gap: 20px;
-    }
+  .block h2 {
+    margin-top: 0;
+  }
 
-    .left, .right {
-      flex: 1;
-    }
+  .task-buttons {
+    margin-top: 10px;
+  }
 
-    .middle {
-      flex: 2;
-    }
+  .task-buttons button {
+    background-color: #999999;
+    color: white;
+    padding: 5px 10px;
+    margin-right: 10px;
+    border: none;
+  }
 
-    .block {
-      background-color: #dddddd;
-      padding: 15px;
-      margin-bottom: 20px;
-    }
+  .content-box {
+    background-color: #cccccc;
+    height: 150px;
+    padding: 10px;
+    margin-top: 10px;
+  }
 
-    .block h2 {
-      margin-top: 0;
-    }
+  .sidebar {
+    background-color: #dddddd;
+    padding: 10px;
+  }
 
-    .task-buttons {
-      margin-top: 10px;
-    }
+  .sidebar div {
+    background-color: #b3b3b3;
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 1px solid #999;
+  }
 
-    .task-buttons button {
-      background-color: #999999;
-      color: white;
-      padding: 5px 10px;
-      margin-right: 10px;
-      border: none;
-    }
+  .comment-section input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    background-color: #aaaaaa;
+    border: none;
+  }
 
-    .content-box {
-      background-color: #cccccc;
-      height: 150px;
-      padding: 10px;
-      margin-top: 10px;
-    }
+  .comment-section button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #999999;
+    color: white;
+    border: none;
+  }
 
-    .sidebar {
-      background-color: #dddddd;
-      padding: 10px;
-    }
+  hr {
+    margin-top: 10px;
+  }
+</style>
+{% endblock styles %}
 
-    .sidebar div {
-      background-color: #b3b3b3;
-      padding: 10px;
-      margin-bottom: 5px;
-      border: 1px solid #999;
-    }
+{% block content %}
 
-    .comment-section input {
-      width: 100%;
-      padding: 8px;
-      margin-top: 10px;
-      background-color: #aaaaaa;
-      border: none;
-    }
+<div class="subnav">
+  <a href="/tasks/list/">&#8592;Задачі</a>
+</div>
 
-    .comment-section button {
-      margin-top: 10px;
-      padding: 10px 20px;
-      background-color: #999999;
-      color: white;
-      border: none;
-    }
-
-    hr {
-      margin-top: 10px;
-    }
-  </style>
-</head>
-<body>
-
-  <header>
-    <h1>NZ ROOM</h1>
-    <div class="user">
-      <div class="circle"></div>
-      <span>Прізвище Імʼя</span>
-    </div>
-  </header>
-
-  <div class="top-bar">
-    ← Деталі завдання
-  </div>
-
-  <div class="container">
-    <div class="left block">
-      <h2>{{ task.title }}</h2>
-      <p>{{ task.end_date }}</p>
-      <p>Місце проведення: Мультипрофільний ліцей</p>
-      <div class="task-buttons">
-        <button>Виконано</button>
-        <button>Не виконано</button>
-      </div>
-    </div>
-
-    <div class="middle block">
-      <h2>Контент завдання:</h2>
-      <div class="content-box">{{ task.content }}</div>
-    </div>
-
-    <div class="right sidebar">
-      <h2>Інші завдання</h2>
-      <div>                        
-        <a href="/tasks/detail/{{ Task.id }}">
-            Перегляд всіх завдань 
-        </a>
-    </div>
-      <!-- <div>Перегляд власних завдань</div> -->
+<div class="container">
+  <div class="left block">
+    <h2>{{ task.title }}</h2>
+    <p>{{ task.end_date }}</p>
+    <p>Місце проведення: Мультипрофільний ліцей</p>
+    <div class="task-buttons">
+      <button>Виконано</button>
+      <button>Не виконано</button>
     </div>
   </div>
 
-  <div class="block comment-section">
-    <h2>Коментарі до завдання</h2>
-    <hr>
-    <input type="text" placeholder="Ваш коментар...">
-    <button>Додати</button>
+  <div class="middle block">
+    <h2>Контент завдання:</h2>
+    <div class="content-box">{{ task.content }}</div>
   </div>
 
-</body>
-</html>
+  <div class="right sidebar">
+    <h2>Інші завдання</h2>
+    <div>                        
+      <a href="/tasks/list/">
+          Перегляд всіх завдань 
+      </a>
+  </div>
+    <!-- <div>Перегляд власних завдань</div> -->
+  </div>
+</div>
+
+<div class="block comment-section">
+  <h2>Коментарі до завдання</h2>
+  <hr>
+  <input type="text" placeholder="Ваш коментар...">
+  <button>Додати</button>
+</div>
+{% endblock content %}

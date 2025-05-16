@@ -1,81 +1,76 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Вхід — NZ ROOM</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: sans-serif; background: #fff; color: #333; }
-    header { background: #ccc; padding: 1rem; }
-    header h1 { margin: 0; font-size: 1.5rem; }
+{% extends "base.html" %}
+
+{% block title %}
+Вхід — NZ ROOM
+{% endblock title %}
+
+{% block styles %}
+<style>
+
+  .login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 64px);
+  }
+  .login-card {
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
 
 
-    .login-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: calc(100vh - 64px);
-    }
-    .login-card {
-      width: 320px;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
+  .login-card .title {
+    background: #ddd;
+    padding: 0.75rem;
+    text-align: center;
+    font-size: 1.25rem;
+    border-radius: 4px;
+  }
+  .login-card input[type="text"],
+  .login-card input[type="password"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    background: #e0e0e0;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  .login-card .buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .login-card .buttons button {
+    flex: 1;
+    padding: 0.5rem;
+    border: none;
+    background: #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .login-card .buttons button:hover {
+    background: #ccc;
+  }
+</style>
+{% endblock styles %}
 
+{% block content %}
 
-    .login-card .title {
-      background: #ddd;
-      padding: 0.75rem;
-      text-align: center;
-      font-size: 1.25rem;
-      border-radius: 4px;
-    }
-    .login-card input[type="text"],
-    .login-card input[type="password"] {
-      width: 100%;
-      padding: 0.5rem;
-      border: none;
-      background: #e0e0e0;
-      border-radius: 4px;
-      font-size: 1rem;
-    }
-    .login-card .buttons {
-      display: flex;
-      gap: 0.5rem;
-    }
-    .login-card .buttons button {
-      flex: 1;
-      padding: 0.5rem;
-      border: none;
-      background: #ddd;
-      border-radius: 4px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .login-card .buttons button:hover {
-      background: #ccc;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>NZ ROOM</h1>
-  </header>
-  <div class="login-container">
-    <form method='POST' class="login-card">
-      <div class="title">Вхід на платформу</div>
-        {% csrf_token %}  
-      <input type="text" name="username" placeholder="Ім'я користувача" />
-      <input type="password" name="password" placeholder="Пароль" />
+<div class="login-container">
+  <form method='POST' class="login-card">
+    <div class="title">Вхід на платформу</div>
+      {% csrf_token %}  
+    <input type="text" name="username" placeholder="Ім'я користувача" />
+    <input type="password" name="password" placeholder="Пароль" />
 
-      <div class="buttons">
-        <button type="submit">Увійти</button>
-        <button type="button">Забули пароль?</button>
-      </div>
-    </form>
-  </div>
-</body>
-</html>
+    <div class="buttons">
+      <button type="submit">Увійти</button>
+      <button type="button">Забули пароль?</button>
+    </div>
+  </form>
+</div>
+
+{% endblock content %}

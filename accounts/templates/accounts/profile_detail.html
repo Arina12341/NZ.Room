@@ -1,36 +1,11 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-  <meta charset="UTF-8" />
-  <title>Перегляд профілю</title>
-  <style>
-    /* Загальні стилі */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: sans-serif; background: #ccc; }
-    a { text-decoration: none; color: #000; }
-    button { border: none; cursor: pointer; font-size: 1em; }
+{% extends "base.html" %}
 
-    /* Хедер */
-    header {
-      background: #eee;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-    }
-    .logo { font-size: 1.2em; }
-    .user {
-      display: flex;
-      align-items: center;
-    }
-    .user-circle {
-      width: 40px;
-      height: 40px;
-      background: #d3bcbc;
-      border-radius: 50%;
-      margin-right: 10px;
-    }
+{% block title %}
+Перегляд профілю — NZ ROOM
+{% endblock title %}
 
+{% block styles %}
+<style>
     /* Основний контент */
     main {
       padding: 20px;
@@ -114,50 +89,43 @@
       resize: none;
     }
   </style>
-</head>
-<body>
+{% endblock styles %}
+{% block content %}
 
-  <header>
-    <div class="logo">NZ ROOM</div>
-    <div class="user">
-      <div class="user-circle"></div>
-      <div>{{ request.user.first_name }} {{ request.user.last_name }}</div>
-    </div>
-  </header>
+<div class="subnav">
+  <a href="/">&#8592; Головна</a>
+</div>
 
-  <main>
-    <a href="/" class="back">&larr; Перегляд профілю</a>
-
-    <div class="profile-card">
-      <div class="profile-header">
-        <div class="photo">*Фото*</div>
-        <div class="profile-info">
-          <h1>{{ user.first_name }} {{ user.last_name }}</h1>
-          <p>{{ user.email }}</p>
-        </div>
+<main>
+  <div class="profile-card">
+    <div class="profile-header">
+      <div class="photo">*Фото*</div>
+      <div class="profile-info">
+        <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+        <p>{{ user.email }}</p>
       </div>
+    </div>
 
-      <div class="fields">
-        <div class="field-col">
-          <div class="field">Статус: {{ user.get_role_display }}</div>
-          <!-- <div class="field">Клас: 9-Б</div> -->
-          <!-- <div class="field">Батьки:</div> -->
-        </div>
-        <div class="field-col">
-          <!-- <div class="field">День народження: 27 листопада</div> -->
-          <div class="field">Школа: Мультипрофільний ліцей</div>
-        </div>
+    <div class="fields">
+      <div class="field-col">
+        <div class="field">Статус: {{ user.get_role_display }}</div>
+        <!-- <div class="field">Клас: 9-Б</div> -->
+        <!-- <div class="field">Батьки:</div> -->
       </div>
-
-      <!-- <button class="btn">Редагувати профіль</button> -->
+      <div class="field-col">
+        <!-- <div class="field">День народження: 27 листопада</div> -->
+        <div class="field">Школа: Мультипрофільний ліцей</div>
+      </div>
     </div>
 
-    <div class="message-card">
-      <h2>Відправити повідомлення користувачу</h2>
-      <textarea placeholder="Текст....."></textarea>
-      <button class="btn">Відправити</button>
-    </div>
-  </main>
+    <!-- <button class="btn">Редагувати профіль</button> -->
+  </div>
 
-</body>
-</html>
+  <div class="message-card">
+    <h2>Відправити повідомлення користувачу</h2>
+    <textarea placeholder="Текст....."></textarea>
+    <button class="btn">Відправити</button>
+  </div>
+</main>
+
+{% endblock content %}

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-Створити подію — NZ ROOM
+Створити задачу — NZ ROOM
 {% endblock title %}
 
 {% block styles %}
@@ -60,11 +60,11 @@
 
 {% block content %}
 <div class="subnav">
-  <a href="/events/list/">&#8592; Події</a>
+  <a href="/tasks/list/">&#8592; Задачі</a>
 </div>
 <div class="container">
     <div class="form-box">
-      <h2>Створити подію</h2>
+      <h2>Створити задачу</h2>
       <form method="POST">
         {% csrf_token %} 
         {{ form.as_div }}

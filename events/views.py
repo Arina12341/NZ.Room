@@ -30,6 +30,7 @@ def event_form(request):
         if form.is_valid():
             form.save()
             return redirect('/events/list/')
+        print(form.errors)
     else:          
         form=EventForm()
     return render(

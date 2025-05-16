@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from nz_room.views import home, page_news, kabinet, users, my_page, menu
+from nz_room.views import home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,9 +25,4 @@ urlpatterns = [
     path('events/', include('events.urls')),
     path('tasks/', include('tasks.urls')),
     path('', home), 
-    path('news', page_news),
-    path('kabinet/', kabinet),
-    path('users/', users),
-    path('my/', my_page),
-    path('menu/', menu),
 ]
