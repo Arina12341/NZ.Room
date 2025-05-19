@@ -23,3 +23,8 @@ class RegisterForm(forms.ModelForm):
             user.save()
 
         return user
+
+class AvatarUploadForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['avatar']

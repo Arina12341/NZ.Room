@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, logout, login
-from .forms import RegisterForm
+from .forms import RegisterForm, AvatarUploadForm
 
 from accounts.models import User
 
@@ -43,3 +43,10 @@ def account_detail(request, pk):
         request, 'accounts/profile_detail.html',
         {'user': user}
     )
+
+def upload_avatar(request):
+    if request.method == 'POST' and request.user.is_authenticated:
+        form = AvatarUploadForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+    return redirect(f'/detail/{request.user.pk}/')

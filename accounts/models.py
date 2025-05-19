@@ -8,3 +8,4 @@ class User(AbstractUser):
         max_length=10, 
         choices=[["teacher","Teacher"],["student","Student"],["perent","Parent"]]
     )
+    avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
