@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, logout, login
 from .forms import RegisterForm, AvatarUploadForm
-
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseForbidden
 from accounts.models import User
 
 def auth_page(request):
@@ -38,15 +39,19 @@ def logout_view(request):
     return redirect('/')
 
 def account_detail(request, pk):
-    user=User.objects.get(id=pk)
-    return render(
-        request, 'accounts/profile_detail.html',
-        {'user': user}
-    )
+    user = User.objects.get(id=pk)
+    is_owner = request.user.is_authenticated and request.user.pk == user.pk
+    return render(request, 'accounts/profile_detail.html', {
+        'user': user,
+        'is_owner': is_owner,
+    })
 
+
+@login_required
 def upload_avatar(request):
-    if request.method == 'POST' and request.user.is_authenticated:
+    if request.method == 'POST':
         form = AvatarUploadForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
-    return redirect(f'/detail/{request.user.pk}/')
+        return redirect(f'/detail/{request.user.pk}/')
+    return HttpResponseForbidden("Недопустимий запит")

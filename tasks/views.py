@@ -1,8 +1,15 @@
 from tasks.forms import TaskForm
 from .models import Task
 from django.shortcuts import redirect, render
+
 def tasks_list(request):
-    tasks=Task.objects.all()
+    tasks = Task.objects.all()
+    if request.GET.get('search'):
+        tasks = tasks.filter(title__icontains=request.GET.get('search'))
+    if request.GET.get('status') == 'done':
+        tasks = tasks.filter(status='done')
+    elif request.GET.get('status') == 'not done':
+        tasks = tasks.filter(status='not done')
     return render(
         request, 'tasks/tasks_list.html',
         {'tasks': tasks}

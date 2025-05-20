@@ -99,17 +99,25 @@
 <main>
   <div class="profile-card">
     <div class="profile-header">
-      <form method="POST" action="{% url 'upload_avatar' %}" enctype="multipart/form-data" id="avatar-form">
-        {% csrf_token %}
-        <label for="avatar-input">
-          {% if user.avatar %}
-            <img src="{{ user.avatar.url }}" alt="Avatar" class="photo" style="object-fit: cover;" />
-          {% else %}
-            <div class="photo">*Фото*</div>
-          {% endif %}
-        </label>
-        <input type="file" name="avatar" id="avatar-input" style="display: none;" onchange="document.getElementById('avatar-form').submit();" />
-      </form>
+      {% if is_owner %}
+        <form method="POST" action="{% url 'upload_avatar' %}" enctype="multipart/form-data" id="avatar-form">
+          {% csrf_token %}
+          <label for="avatar-input" style="cursor:pointer;">
+            {% if user.avatar %}
+              <img src="{{ user.avatar.url }}" alt="Avatar" class="photo" style="object-fit: cover;" />
+            {% else %}
+              <div class="photo">*Фото*</div>
+            {% endif %}
+          </label>
+          <input type="file" name="avatar" id="avatar-input" style="display: none;" onchange="document.getElementById('avatar-form').submit();" />
+        </form>
+      {% else %}
+        {% if user.avatar %}
+          <img src="{{ user.avatar.url }}" alt="Avatar" class="photo" style="object-fit: cover;" />
+        {% else %}
+          <div class="photo">*Фото*</div>
+        {% endif %}
+      {% endif %}
       <div class="profile-info">
         <h1>{{ user.first_name }} {{ user.last_name }}</h1>
         <p>{{ user.email }}</p>
